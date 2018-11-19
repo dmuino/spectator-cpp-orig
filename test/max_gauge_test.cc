@@ -14,7 +14,7 @@ TEST(MaxGauge, Init) {
   auto g = getMaxGauge("foo");
   EXPECT_TRUE(std::isnan(g->Get()));
 
-  g->Update(42);
+  g->Set(42);
   EXPECT_DOUBLE_EQ(42.0, g->Get());
 
   auto ms = g->Measure();

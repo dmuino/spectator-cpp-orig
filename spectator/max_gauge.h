@@ -13,6 +13,9 @@ class MaxGauge : public Meter {
   MeterType GetType() const noexcept override { return MeterType::MaxGauge; };
 
   void Update(double value) noexcept;
+
+  // synonym for Update for consistency with the Gauge interface
+  void Set(double value) noexcept { Update(value); }
   double Get() const noexcept;
 
  private:
