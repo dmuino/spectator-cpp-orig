@@ -10,6 +10,7 @@ enum class MeterType {
   Counter,
   DistributionSummary,
   Gauge,
+  MaxGauge,
   MonotonicCounter,
   Timer
 };
@@ -24,6 +25,9 @@ inline std::ostream& operator<<(std::ostream& os, const MeterType& mt) {
       break;
     case MeterType::Gauge:
       os << "Gauge";
+      break;
+    case MeterType::MaxGauge:
+      os << "MaxGauge";
       break;
     case MeterType::MonotonicCounter:
       os << "MonotonicCounter";

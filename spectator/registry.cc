@@ -41,6 +41,14 @@ std::shared_ptr<Gauge> Registry::GetGauge(std::string name) noexcept {
   return GetGauge(CreateId(std::move(name), Tags{}));
 }
 
+std::shared_ptr<MaxGauge> Registry::GetMaxGauge(IdPtr id) noexcept {
+  return create_and_register_as_needed<MaxGauge>(std::move(id));
+}
+
+std::shared_ptr<MaxGauge> Registry::GetMaxGauge(std::string name) noexcept {
+  return GetMaxGauge(CreateId(name, Tags{}));
+}
+
 std::shared_ptr<MonotonicCounter> Registry::GetMonotonicCounter(
     IdPtr id) noexcept {
   return create_and_register_as_needed<MonotonicCounter>(std::move(id));

@@ -4,6 +4,7 @@
 #include "counter.h"
 #include "dist_summary.h"
 #include "gauge.h"
+#include "max_gauge.h"
 #include "monotonic_counter.h"
 #include "publisher.h"
 #include "timer.h"
@@ -34,6 +35,9 @@ class Registry {
 
   std::shared_ptr<Gauge> GetGauge(IdPtr id) noexcept;
   std::shared_ptr<Gauge> GetGauge(std::string name) noexcept;
+
+  std::shared_ptr<MaxGauge> GetMaxGauge(IdPtr id) noexcept;
+  std::shared_ptr<MaxGauge> GetMaxGauge(std::string name) noexcept;
 
   std::shared_ptr<Timer> GetTimer(IdPtr id) noexcept;
   std::shared_ptr<Timer> GetTimer(std::string name) noexcept;

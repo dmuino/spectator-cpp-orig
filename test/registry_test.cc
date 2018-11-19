@@ -31,7 +31,23 @@ TEST(Registry, Gauge) {
   Registry r{Config{}};
   auto g = r.GetGauge("g");
   g->Set(100);
-  EXPECT_EQ(r.GetGauge("g")->Get(), 100);
+  EXPECT_DOUBLE_EQ(r.GetGauge("g")->Get(), 100);
+}
+
+TEST(Registry, MaxGauge) {
+  Registry r{Config{}};
+  auto g = r.GetMaxGauge("g");
+  g->Update(100);
+  EXPECT_DOUBLE_EQ(r.GetMaxGauge("g")->Get(), 100);
+}
+
+TEST(Registry, MonotonicCounter) {
+  Registry r{Config{}};
+  auto c = r.GetMonotonicCounter("m");
+  c->Set(100);
+  c->Measure();
+  c->Set(200);
+  EXPECT_DOUBLE_EQ(r.GetMonotonicCounter("m")->Delta(), 100);
 }
 
 TEST(Registry, Timer) {
