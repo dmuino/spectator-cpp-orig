@@ -6,7 +6,13 @@
 
 namespace spectator {
 
-enum class MeterType { Counter, DistributionSummary, Gauge, Timer };
+enum class MeterType {
+  Counter,
+  DistributionSummary,
+  Gauge,
+  MonotonicCounter,
+  Timer
+};
 
 inline std::ostream& operator<<(std::ostream& os, const MeterType& mt) {
   switch (mt) {
@@ -18,6 +24,9 @@ inline std::ostream& operator<<(std::ostream& os, const MeterType& mt) {
       break;
     case MeterType::Gauge:
       os << "Gauge";
+      break;
+    case MeterType::MonotonicCounter:
+      os << "MonotonicCounter";
       break;
     case MeterType::Timer:
       os << "Timer";

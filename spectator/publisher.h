@@ -192,7 +192,8 @@ class Publisher {
   void update_http_err(int status_code, int64_t num_not_sent) {
     Tags tags{{"error", "httpError"}};
     tags.add("statusCode", std::to_string(status_code));
-    registry_->GetCounter(registry_->CreateId("spectator.measurementsErr", tags))
+    registry_
+        ->GetCounter(registry_->CreateId("spectator.measurementsErr", tags))
         ->Add(num_not_sent);
   }
 

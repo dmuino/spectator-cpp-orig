@@ -4,6 +4,7 @@
 #include "counter.h"
 #include "dist_summary.h"
 #include "gauge.h"
+#include "monotonic_counter.h"
 #include "publisher.h"
 #include "timer.h"
 #include <mutex>
@@ -21,6 +22,10 @@ class Registry {
 
   std::shared_ptr<Counter> GetCounter(IdPtr id) noexcept;
   std::shared_ptr<Counter> GetCounter(std::string name) noexcept;
+
+  std::shared_ptr<MonotonicCounter> GetMonotonicCounter(IdPtr id) noexcept;
+  std::shared_ptr<MonotonicCounter> GetMonotonicCounter(
+      std::string name) noexcept;
 
   std::shared_ptr<DistributionSummary> GetDistributionSummary(
       IdPtr id) noexcept;

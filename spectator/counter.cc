@@ -3,8 +3,7 @@
 
 namespace spectator {
 
-Counter::Counter(IdPtr id) noexcept
-    : id_{std::move(id)}, count_{0.0} {}
+Counter::Counter(IdPtr id) noexcept : id_{std::move(id)}, count_{0.0} {}
 
 IdPtr Counter::MeterId() const noexcept { return id_; }
 

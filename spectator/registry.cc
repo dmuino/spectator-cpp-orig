@@ -25,8 +25,7 @@ std::shared_ptr<Counter> Registry::GetCounter(std::string name) noexcept {
 
 std::shared_ptr<DistributionSummary> Registry::GetDistributionSummary(
     IdPtr id) noexcept {
-  return create_and_register_as_needed<DistributionSummary>(
-      std::move(id));
+  return create_and_register_as_needed<DistributionSummary>(std::move(id));
 }
 
 std::shared_ptr<DistributionSummary> Registry::GetDistributionSummary(
@@ -40,6 +39,16 @@ std::shared_ptr<Gauge> Registry::GetGauge(IdPtr id) noexcept {
 
 std::shared_ptr<Gauge> Registry::GetGauge(std::string name) noexcept {
   return GetGauge(CreateId(std::move(name), Tags{}));
+}
+
+std::shared_ptr<MonotonicCounter> Registry::GetMonotonicCounter(
+    IdPtr id) noexcept {
+  return create_and_register_as_needed<MonotonicCounter>(std::move(id));
+}
+
+std::shared_ptr<MonotonicCounter> Registry::GetMonotonicCounter(
+    std::string name) noexcept {
+  return GetMonotonicCounter(CreateId(std::move(name), Tags{}));
 }
 
 std::shared_ptr<Timer> Registry::GetTimer(IdPtr id) noexcept {

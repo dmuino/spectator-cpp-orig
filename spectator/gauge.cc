@@ -5,8 +5,7 @@ namespace spectator {
 
 static constexpr auto kNAN = std::numeric_limits<double>::quiet_NaN();
 
-Gauge::Gauge(IdPtr id) noexcept
-    : id_{std::move(id)}, value_{kNAN} {}
+Gauge::Gauge(IdPtr id) noexcept : id_{std::move(id)}, value_{kNAN} {}
 
 IdPtr Gauge::MeterId() const noexcept { return id_; }
 std::vector<Measurement> Gauge::Measure() const noexcept {
