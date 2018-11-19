@@ -94,9 +94,9 @@ TEST(Publisher, measurements_to_json) {
   TestRegistry test_registry{get_test_config()};
   TestPublisher publisher{&test_registry};
 
-  auto ctr = test_registry.Counter("counter");
+  auto ctr = test_registry.GetCounter("counter");
   ctr->Increment();
-  auto gauge = test_registry.Gauge("gauge");
+  auto gauge = test_registry.GetGauge("gauge");
   gauge->Set(42.0);
 
   auto measurements = test_registry.Measurements();

@@ -186,13 +186,13 @@ class Publisher {
   }
 
   void update_sent(int64_t num_sent) {
-    registry_->Counter("spectator.measurementsSent")->Add(num_sent);
+    registry_->GetCounter("spectator.measurementsSent")->Add(num_sent);
   }
 
   void update_http_err(int status_code, int64_t num_not_sent) {
     Tags tags{{"error", "httpError"}};
     tags.add("statusCode", std::to_string(status_code));
-    registry_->Counter(registry_->CreateId("spectator.measurementsErr", tags))
+    registry_->GetCounter(registry_->CreateId("spectator.measurementsErr", tags))
         ->Add(num_not_sent);
   }
 

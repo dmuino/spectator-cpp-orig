@@ -5,9 +5,9 @@
 
 namespace spectator {
 
-class DefaultGauge : public Meter {
+class Gauge : public Meter {
  public:
-  explicit DefaultGauge(IdPtr id) noexcept;
+  explicit Gauge(IdPtr id) noexcept;
   IdPtr MeterId() const noexcept override;
   std::vector<Measurement> Measure() const noexcept override;
   MeterType GetType() const noexcept override { return MeterType::Gauge; };

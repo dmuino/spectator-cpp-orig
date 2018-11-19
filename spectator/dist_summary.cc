@@ -3,12 +3,12 @@
 
 namespace spectator {
 
-DefaultDistributionSummary::DefaultDistributionSummary(IdPtr id) noexcept
+DistributionSummary::DistributionSummary(IdPtr id) noexcept
     : id_(std::move(id)), count_(0), total_(0), totalSq_(0.0), max_(0) {}
 
-IdPtr DefaultDistributionSummary::MeterId() const noexcept { return id_; }
+IdPtr DistributionSummary::MeterId() const noexcept { return id_; }
 
-std::vector<Measurement> DefaultDistributionSummary::Measure() const noexcept {
+std::vector<Measurement> DistributionSummary::Measure() const noexcept {
   std::vector<Measurement> results;
   auto cnt = count_.exchange(0, std::memory_order_relaxed);
   if (cnt == 0) {
@@ -26,7 +26,7 @@ std::vector<Measurement> DefaultDistributionSummary::Measure() const noexcept {
   return results;
 }
 
-void DefaultDistributionSummary::Record(int64_t amount) noexcept {
+void DistributionSummary::Record(int64_t amount) noexcept {
   if (amount >= 0) {
     count_.fetch_add(1, std::memory_order_relaxed);
     total_.fetch_add(amount, std::memory_order_relaxed);
@@ -35,11 +35,11 @@ void DefaultDistributionSummary::Record(int64_t amount) noexcept {
   }
 }
 
-int64_t DefaultDistributionSummary::Count() const noexcept {
+int64_t DistributionSummary::Count() const noexcept {
   return count_.load(std::memory_order_relaxed);
 }
 
-int64_t DefaultDistributionSummary::TotalAmount() const noexcept {
+int64_t DistributionSummary::TotalAmount() const noexcept {
   return total_.load(std::memory_order_relaxed);
 }
 

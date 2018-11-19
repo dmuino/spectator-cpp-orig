@@ -19,19 +19,19 @@ class Registry {
 
   IdPtr CreateId(std::string name, Tags tags) noexcept;
 
-  std::shared_ptr<DefaultCounter> Counter(IdPtr id) noexcept;
-  std::shared_ptr<DefaultCounter> Counter(std::string name) noexcept;
+  std::shared_ptr<Counter> GetCounter(IdPtr id) noexcept;
+  std::shared_ptr<Counter> GetCounter(std::string name) noexcept;
 
-  std::shared_ptr<DefaultDistributionSummary> DistributionSummary(
+  std::shared_ptr<DistributionSummary> GetDistributionSummary(
       IdPtr id) noexcept;
-  std::shared_ptr<DefaultDistributionSummary> DistributionSummary(
+  std::shared_ptr<DistributionSummary> GetDistributionSummary(
       std::string name) noexcept;
 
-  std::shared_ptr<DefaultGauge> Gauge(IdPtr id) noexcept;
-  std::shared_ptr<DefaultGauge> Gauge(std::string name) noexcept;
+  std::shared_ptr<Gauge> GetGauge(IdPtr id) noexcept;
+  std::shared_ptr<Gauge> GetGauge(std::string name) noexcept;
 
-  std::shared_ptr<DefaultTimer> Timer(IdPtr id) noexcept;
-  std::shared_ptr<DefaultTimer> Timer(std::string name) noexcept;
+  std::shared_ptr<Timer> GetTimer(IdPtr id) noexcept;
+  std::shared_ptr<Timer> GetTimer(std::string name) noexcept;
 
   std::vector<std::shared_ptr<Meter>> Meters() const noexcept;
   std::vector<Measurement> Measurements() const noexcept;

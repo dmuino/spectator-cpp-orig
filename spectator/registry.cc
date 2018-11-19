@@ -15,39 +15,39 @@ IdPtr Registry::CreateId(std::string name, Tags tags) noexcept {
   return std::make_shared<Id>(name, tags);
 }
 
-std::shared_ptr<DefaultCounter> Registry::Counter(IdPtr id) noexcept {
-  return create_and_register_as_needed<DefaultCounter>(std::move(id));
+std::shared_ptr<Counter> Registry::GetCounter(IdPtr id) noexcept {
+  return create_and_register_as_needed<Counter>(std::move(id));
 }
 
-std::shared_ptr<DefaultCounter> Registry::Counter(std::string name) noexcept {
-  return Counter(CreateId(std::move(name), Tags{}));
+std::shared_ptr<Counter> Registry::GetCounter(std::string name) noexcept {
+  return GetCounter(CreateId(std::move(name), Tags{}));
 }
 
-std::shared_ptr<DefaultDistributionSummary> Registry::DistributionSummary(
+std::shared_ptr<DistributionSummary> Registry::GetDistributionSummary(
     IdPtr id) noexcept {
-  return create_and_register_as_needed<DefaultDistributionSummary>(
+  return create_and_register_as_needed<DistributionSummary>(
       std::move(id));
 }
 
-std::shared_ptr<DefaultDistributionSummary> Registry::DistributionSummary(
+std::shared_ptr<DistributionSummary> Registry::GetDistributionSummary(
     std::string name) noexcept {
-  return DistributionSummary(CreateId(std::move(name), Tags{}));
+  return GetDistributionSummary(CreateId(std::move(name), Tags{}));
 }
 
-std::shared_ptr<DefaultGauge> Registry::Gauge(IdPtr id) noexcept {
-  return create_and_register_as_needed<DefaultGauge>(std::move(id));
+std::shared_ptr<Gauge> Registry::GetGauge(IdPtr id) noexcept {
+  return create_and_register_as_needed<Gauge>(std::move(id));
 }
 
-std::shared_ptr<DefaultGauge> Registry::Gauge(std::string name) noexcept {
-  return Gauge(CreateId(std::move(name), Tags{}));
+std::shared_ptr<Gauge> Registry::GetGauge(std::string name) noexcept {
+  return GetGauge(CreateId(std::move(name), Tags{}));
 }
 
-std::shared_ptr<DefaultTimer> Registry::Timer(IdPtr id) noexcept {
-  return create_and_register_as_needed<DefaultTimer>(std::move(id));
+std::shared_ptr<Timer> Registry::GetTimer(IdPtr id) noexcept {
+  return create_and_register_as_needed<Timer>(std::move(id));
 }
 
-std::shared_ptr<DefaultTimer> Registry::Timer(std::string name) noexcept {
-  return Timer(CreateId(std::move(name), Tags{}));
+std::shared_ptr<Timer> Registry::GetTimer(std::string name) noexcept {
+  return GetTimer(CreateId(std::move(name), Tags{}));
 }
 
 // only insert if it doesn't exist, otherwise return the existing meter

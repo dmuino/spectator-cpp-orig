@@ -4,11 +4,11 @@
 #include <unordered_map>
 
 namespace {
-using spectator::DefaultTimer;
+using spectator::Timer;
 
-std::unique_ptr<DefaultTimer> getTimer() {
+std::unique_ptr<Timer> getTimer() {
   auto id = std::make_shared<spectator::Id>("t", spectator::Tags{});
-  return std::make_unique<DefaultTimer>(id);
+  return std::make_unique<Timer>(id);
 }
 
 TEST(Timer, Record) {
@@ -34,7 +34,7 @@ TEST(Timer, Record) {
   EXPECT_EQ(t->TotalTime(), 1101);
 }
 
-void expect_timer(const DefaultTimer& t, int64_t count, int64_t total,
+void expect_timer(const Timer& t, int64_t count, int64_t total,
                   double total_sq, int64_t max) {
   auto ms = t.Measure();
   ASSERT_EQ(ms.size(), 4) << "Expected 4 measurements from a Timer, got "

@@ -4,9 +4,9 @@
 
 namespace spectator {
 
-class DefaultDistributionSummary : public Meter {
+class DistributionSummary : public Meter {
  public:
-  explicit DefaultDistributionSummary(IdPtr id) noexcept;
+  explicit DistributionSummary(IdPtr id) noexcept;
   IdPtr MeterId() const noexcept override;
   std::vector<Measurement> Measure() const noexcept override;
   MeterType GetType() const noexcept override {

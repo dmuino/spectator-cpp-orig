@@ -5,9 +5,9 @@
 
 namespace spectator {
 
-class DefaultCounter : public Meter {
+class Counter : public Meter {
  public:
-  explicit DefaultCounter(IdPtr id) noexcept;
+  explicit Counter(IdPtr id) noexcept;
   IdPtr MeterId() const noexcept override;
   std::vector<Measurement> Measure() const noexcept override;
   MeterType GetType() const noexcept override { return MeterType::Counter; }

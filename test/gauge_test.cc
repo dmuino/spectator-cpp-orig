@@ -3,10 +3,10 @@
 #include <gtest/gtest.h>
 
 namespace {
-using spectator::DefaultGauge;
-std::unique_ptr<DefaultGauge> getGauge(std::string name) {
+using spectator::Gauge;
+std::unique_ptr<Gauge> getGauge(std::string name) {
   auto id = std::make_shared<spectator::Id>(name, spectator::Tags{});
-  return std::make_unique<DefaultGauge>(id);
+  return std::make_unique<Gauge>(id);
 }
 
 TEST(Gauge, Init) {

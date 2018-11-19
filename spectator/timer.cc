@@ -3,12 +3,12 @@
 
 namespace spectator {
 
-DefaultTimer::DefaultTimer(IdPtr id) noexcept
+Timer::Timer(IdPtr id) noexcept
     : id_(std::move(id)), count_(0), total_(0), totalSq_(0.0), max_(0) {}
 
-IdPtr DefaultTimer::MeterId() const noexcept { return id_; }
+IdPtr Timer::MeterId() const noexcept { return id_; }
 
-std::vector<Measurement> DefaultTimer::Measure() const noexcept {
+std::vector<Measurement> Timer::Measure() const noexcept {
   std::vector<Measurement> results;
   auto cnt = count_.exchange(0, std::memory_order_relaxed);
   if (cnt == 0) {
@@ -28,7 +28,7 @@ std::vector<Measurement> DefaultTimer::Measure() const noexcept {
   return results;
 }
 
-void DefaultTimer::Record(std::chrono::nanoseconds amount) noexcept {
+void Timer::Record(std::chrono::nanoseconds amount) noexcept {
   auto ns = amount.count();
   if (ns >= 0) {
     count_.fetch_add(1, std::memory_order_relaxed);
@@ -38,11 +38,11 @@ void DefaultTimer::Record(std::chrono::nanoseconds amount) noexcept {
   }
 }
 
-int64_t DefaultTimer::Count() const noexcept {
+int64_t Timer::Count() const noexcept {
   return count_.load(std::memory_order_relaxed);
 }
 
-int64_t DefaultTimer::TotalTime() const noexcept {
+int64_t Timer::TotalTime() const noexcept {
   return total_.load(std::memory_order_relaxed);
 }
 

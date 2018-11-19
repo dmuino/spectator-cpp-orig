@@ -8,67 +8,67 @@ using spectator::Registry;
 
 TEST(Registry, Counter) {
   Registry r{Config{}};
-  auto c = r.Counter("foo");
+  auto c = r.GetCounter("foo");
   c->Increment();
   EXPECT_EQ(c->Count(), 1);
 }
 
 TEST(Registry, CounterGet) {
   Registry r{Config{}};
-  auto c = r.Counter("foo");
+  auto c = r.GetCounter("foo");
   c->Increment();
-  EXPECT_EQ(r.Counter("foo")->Count(), 1);
+  EXPECT_EQ(r.GetCounter("foo")->Count(), 1);
 }
 
 TEST(Registry, DistSummary) {
   Registry r{Config{}};
-  auto ds = r.DistributionSummary("ds");
+  auto ds = r.GetDistributionSummary("ds");
   ds->Record(100);
-  EXPECT_EQ(r.DistributionSummary("ds")->TotalAmount(), 100);
+  EXPECT_EQ(r.GetDistributionSummary("ds")->TotalAmount(), 100);
 }
 
 TEST(Registry, Gauge) {
   Registry r{Config{}};
-  auto g = r.Gauge("g");
+  auto g = r.GetGauge("g");
   g->Set(100);
-  EXPECT_EQ(r.Gauge("g")->Get(), 100);
+  EXPECT_EQ(r.GetGauge("g")->Get(), 100);
 }
 
 TEST(Registry, Timer) {
   Registry r{Config{}};
-  auto t = r.Timer("t");
+  auto t = r.GetTimer("t");
   t->Record(std::chrono::microseconds(1));
-  EXPECT_EQ(r.Timer("t")->TotalTime(), 1000);
+  EXPECT_EQ(r.GetTimer("t")->TotalTime(), 1000);
 }
 
 TEST(Registry, WrongType) {
   Registry r{Config{}};
-  auto t = r.Timer("meter");
+  auto t = r.GetTimer("meter");
   t->Record(std::chrono::nanoseconds(1));
 
   // this should log an error but still return a Gauge
-  auto g = r.Gauge("meter");
+  auto g = r.GetGauge("meter");
   g->Set(42);
 
   // the actual meter in the registry is the timer
-  EXPECT_EQ(r.Timer("meter")->TotalTime(), 1);
+  EXPECT_EQ(r.GetTimer("meter")->TotalTime(), 1);
 
   // the gauge is not persisted
-  EXPECT_TRUE(std::isnan(r.Gauge("meter")->Get()));
+  EXPECT_TRUE(std::isnan(r.GetGauge("meter")->Get()));
 }
 
 TEST(Registry, Meters) {
   Registry r{Config{}};
-  auto t = r.Timer("t");
-  auto c = r.Counter("c");
-  r.Timer("t")->Count();
+  auto t = r.GetTimer("t");
+  auto c = r.GetCounter("c");
+  r.GetTimer("t")->Count();
   auto meters = r.Meters();
   ASSERT_EQ(meters.size(), 2);
 }
 
 TEST(Registry, MeasurementTest) {
   Registry r{Config{}};
-  auto c = r.Counter("c");
+  auto c = r.GetCounter("c");
   c->Increment();
   auto m = c->Measure().front();
   // test to string

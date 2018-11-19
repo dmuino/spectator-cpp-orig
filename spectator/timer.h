@@ -5,9 +5,9 @@
 
 namespace spectator {
 
-class DefaultTimer : public Meter {
+class Timer : public Meter {
  public:
-  explicit DefaultTimer(IdPtr id) noexcept;
+  explicit Timer(IdPtr id) noexcept;
   IdPtr MeterId() const noexcept override;
   std::vector<Measurement> Measure() const noexcept override;
   MeterType GetType() const noexcept override { return MeterType::Timer; }

@@ -4,11 +4,11 @@
 #include <unordered_map>
 
 namespace {
-using spectator::DefaultDistributionSummary;
+using spectator::DistributionSummary;
 
-std::unique_ptr<DefaultDistributionSummary> getDS() {
+std::unique_ptr<DistributionSummary> getDS() {
   auto id = std::make_shared<spectator::Id>("ds", spectator::Tags{});
-  return std::make_unique<DefaultDistributionSummary>(id);
+  return std::make_unique<DistributionSummary>(id);
 }
 
 TEST(DistributionSummary, Record) {
@@ -34,7 +34,7 @@ TEST(DistributionSummary, Record) {
   EXPECT_EQ(ds->TotalAmount(), 201);
 }
 
-void expect_dist_summary(const DefaultDistributionSummary& ds, int64_t count,
+void expect_dist_summary(const DistributionSummary& ds, int64_t count,
                          int64_t total, double total_sq, int64_t max) {
   auto ms = ds.Measure();
   ASSERT_EQ(ms.size(), 4)

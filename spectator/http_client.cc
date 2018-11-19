@@ -156,7 +156,7 @@ int HttpClient::do_post(const std::string& url,
   }
 
   auto duration = Registry::clock::now() - start;
-  registry_->Timer(registry_->CreateId("http.req.complete", tags))
+  registry_->GetTimer(registry_->CreateId("http.req.complete", tags))
       ->Record(duration);
   return http_code;
 }
@@ -315,7 +315,7 @@ std::vector<int> HttpClient::PostBatches(
       {"method", "POST"}, {"mode", "http-client"}, {"client", "spectator-cpp"}};
   for (const auto& result : results) {
     add_status_tags(&tags, CURLE_OK, result);
-    registry_->Timer(registry_->CreateId("http.req.complete", tags))
+    registry_->GetTimer(registry_->CreateId("http.req.complete", tags))
         ->Record(duration);
   }
   return results;

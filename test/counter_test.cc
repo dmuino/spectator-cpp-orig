@@ -3,9 +3,9 @@
 #include <gtest/gtest.h>
 
 namespace {
-std::unique_ptr<spectator::DefaultCounter> getCounter(std::string name) {
+std::unique_ptr<spectator::Counter> getCounter(std::string name) {
   auto id = std::make_shared<spectator::Id>(name, spectator::Tags{});
-  return std::make_unique<spectator::DefaultCounter>(id);
+  return std::make_unique<spectator::Counter>(id);
 }
 
 TEST(Counter, Increment) {
