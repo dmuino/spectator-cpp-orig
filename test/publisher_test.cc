@@ -1,8 +1,8 @@
-#include <gtest/gtest.h>
 #include "../spectator/publisher.h"
 #include "../spectator/registry.h"
-#include <rapidjson/writer.h>
+#include <gtest/gtest.h>
 #include <rapidjson/stringbuffer.h>
+#include <rapidjson/writer.h>
 
 using spectator::Config;
 using spectator::Measurement;

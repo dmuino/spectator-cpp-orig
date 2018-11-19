@@ -1,5 +1,5 @@
-#include <gtest/gtest.h>
 #include "../spectator/id.h"
+#include <gtest/gtest.h>
 
 namespace {
 using spectator::Id;

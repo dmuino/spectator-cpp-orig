@@ -1,6 +1,6 @@
-#include <gtest/gtest.h>
 #include "../spectator/gauge.h"
 #include "../spectator/memory.h"
+#include <gtest/gtest.h>
 
 namespace {
 using spectator::DefaultGauge;
