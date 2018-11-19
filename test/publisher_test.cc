@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "../lib/publisher.h"
-#include "../lib/registry.h"
+#include "../spectator/publisher.h"
+#include "../spectator/registry.h"
 #include <rapidjson/writer.h>
 #include <rapidjson/stringbuffer.h>
 

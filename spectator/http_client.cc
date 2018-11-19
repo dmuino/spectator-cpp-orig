@@ -1,9 +1,9 @@
 #include "http_client.h"
-#include "../lib/registry.h"
 #include "gzip.h"
 #include "json.h"
 #include "logger.h"
 #include "memory.h"
+#include "registry.h"
 #include "strings.h"
 
 #include <algorithm>

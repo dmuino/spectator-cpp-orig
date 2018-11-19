@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../util/strings.h"
+#include "../spectator/strings.h"
 
 namespace {
 TEST(Strings, IStartsWith) {

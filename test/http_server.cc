@@ -1,6 +1,6 @@
 #include "http_server.h"
-#include "../util/gzip.h"
-#include "../util/logger.h"
+#include "../spectator/gzip.h"
+#include "../spectator/logger.h"
 #include <fmt/format.h>
 #include <fstream>
 #include <gtest/gtest.h>

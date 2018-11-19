@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../util/gzip.h"
+#include "../spectator/gzip.h"
 
 namespace {
 TEST(Gzip, SanityCheck) {

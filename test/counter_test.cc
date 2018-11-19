@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "../lib/counter.h"
-#include "../util/memory.h"
+#include "../spectator/counter.h"
+#include "../spectator/memory.h"
 
 namespace {
 std::unique_ptr<spectator::DefaultCounter> getCounter(std::string name) {

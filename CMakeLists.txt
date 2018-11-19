@@ -34,7 +34,7 @@ endif()
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-file(GLOB LIB_SOURCE_FILES lib/*.h lib/*.cc util/*.h util/*.cc) 
+file(GLOB LIB_SOURCE_FILES spectator/*.h spectator/*.cc)
 add_library(spectator_cpp SHARED ${LIB_SOURCE_FILES})
 set_target_properties(spectator_cpp PROPERTIES COMPILE_FLAGS "-Wextra -Wno-missing-braces")
 
@@ -59,15 +59,11 @@ set_target_properties(runtests PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS} -Wno
 
 add_library(gtest 3rd-party/src/gtest/gtest-all.cc)
 
-add_custom_command(TARGET runtests POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/test/resources $<TARGET_FILE_DIR:runtests>/resources)
-
-target_link_libraries(runtests spectator_cpp pthread gtest) 
+target_link_libraries(runtests spectator_cpp pthread gtest)
 add_test(runtests runtests)
 
 install(TARGETS spectator_cpp DESTINATION lib)
-install(DIRECTORY lib util DESTINATION include/spectator FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY spectator DESTINATION include FILES_MATCHING PATTERN "*.h")
 install(DIRECTORY 3rd-party/ska DESTINATION include FILES_MATCHING PATTERN "*.hpp")
 
 if(CMAKE_SYSTEM_NAME STREQUAL Linux)

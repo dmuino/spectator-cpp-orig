@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <fmt/ostream.h>
-#include "../lib/registry.h"
+#include "../spectator/registry.h"
 
 namespace {
 using spectator::Config;

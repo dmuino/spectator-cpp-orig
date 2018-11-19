@@ -3,8 +3,8 @@
 #include <atomic>
 #include <mutex>
 #include <thread>
-#include "../util/logger.h"
-#include "../util/http_client.h"
+#include "logger.h"
+#include "http_client.h"
 #include "measurement.h"
 
 namespace spectator {

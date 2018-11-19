@@ -1,6 +1,6 @@
 #include <utility>
 
-#include "../util/logger.h"
+#include "logger.h"
 #include "registry.h"
 #include <fmt/ostream.h>
 

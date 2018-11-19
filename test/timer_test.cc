@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <unordered_map>
-#include "../lib/timer.h"
-#include "../util/memory.h"
+#include "../spectator/memory.h"
+#include "../spectator/timer.h"
 
 namespace {
 using spectator::DefaultTimer;

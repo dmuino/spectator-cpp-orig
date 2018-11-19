@@ -6,11 +6,11 @@
 #include <sys/types.h>
 #include <zlib.h>
 
-#include "../lib/registry.h"
-#include "../util/gzip.h"
-#include "../util/http_client.h"
-#include "../util/logger.h"
-#include "../util/strings.h"
+#include "../spectator/registry.h"
+#include "../spectator/gzip.h"
+#include "../spectator/http_client.h"
+#include "../spectator/logger.h"
+#include "../spectator/strings.h"
 #include "http_server.h"
 #include <fstream>
 #include <thread>

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <unordered_map>
-#include "../lib/dist_summary.h"
-#include "../util/memory.h"
+#include "../spectator/dist_summary.h"
+#include "../spectator/memory.h"
 
 namespace {
 using spectator::DefaultDistributionSummary;
