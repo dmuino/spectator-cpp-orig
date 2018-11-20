@@ -13,16 +13,16 @@ class DistributionSummary : public Meter {
     return MeterType::DistributionSummary;
   }
 
-  void Record(int64_t amount) noexcept;
+  void Record(double amount) noexcept;
   int64_t Count() const noexcept;
-  int64_t TotalAmount() const noexcept;
+  double TotalAmount() const noexcept;
 
  private:
   IdPtr id_;
   mutable std::atomic<int64_t> count_;
-  mutable std::atomic<int64_t> total_;
+  mutable std::atomic<double> total_;
   mutable std::atomic<double> totalSq_;
-  mutable std::atomic<int64_t> max_;
+  mutable std::atomic<double> max_;
 };
 
 }  // namespace spectator

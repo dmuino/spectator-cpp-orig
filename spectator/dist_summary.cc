@@ -15,22 +15,22 @@ std::vector<Measurement> DistributionSummary::Measure() const noexcept {
     return results;
   }
 
-  auto total = total_.exchange(0, std::memory_order_relaxed);
+  auto total = total_.exchange(0.0, std::memory_order_relaxed);
   auto t_sq = totalSq_.exchange(0.0, std::memory_order_relaxed);
-  auto mx = max_.exchange(0, std::memory_order_relaxed);
+  auto mx = max_.exchange(0.0, std::memory_order_relaxed);
   results.reserve(4);
   results.push_back({id_->WithStat("count"), static_cast<double>(cnt)});
-  results.push_back({id_->WithStat("totalAmount"), static_cast<double>(total)});
+  results.push_back({id_->WithStat("totalAmount"), total});
   results.push_back({id_->WithStat("totalOfSquares"), t_sq});
-  results.push_back({id_->WithStat("max"), static_cast<double>(mx)});
+  results.push_back({id_->WithStat("max"), mx});
   return results;
 }
 
-void DistributionSummary::Record(int64_t amount) noexcept {
+void DistributionSummary::Record(double amount) noexcept {
   if (amount >= 0) {
     count_.fetch_add(1, std::memory_order_relaxed);
-    total_.fetch_add(amount, std::memory_order_relaxed);
-    add_double(&totalSq_, static_cast<double>(amount) * amount);
+    add_double(&total_, amount);
+    add_double(&totalSq_, amount * amount);
     update_max(&max_, amount);
   }
 }
@@ -39,7 +39,7 @@ int64_t DistributionSummary::Count() const noexcept {
   return count_.load(std::memory_order_relaxed);
 }
 
-int64_t DistributionSummary::TotalAmount() const noexcept {
+double DistributionSummary::TotalAmount() const noexcept {
   return total_.load(std::memory_order_relaxed);
 }
 
